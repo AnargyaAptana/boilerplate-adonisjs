@@ -16,6 +16,20 @@
 import Logger from '@ioc:Adonis/Core/Logger'
 import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
 
+export interface ExceptionOption {
+  status?: number
+  code?: string
+  meta?: object
+}
+
+export interface ExceptionJsonMessage {
+  errors: {
+    message: string
+    error_code: string
+    meta?: object
+  }
+}
+
 export default class ExceptionHandler extends HttpExceptionHandler {
   constructor() {
     super(Logger)
