@@ -15,6 +15,9 @@
 
 import Logger from '@ioc:Adonis/Core/Logger'
 import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
+import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { Exception } from '@adonisjs/core/build/standalone'
+import { HttpStatus } from 'App/Util/response'
 
 export interface ExceptionOption {
   status?: number
@@ -33,5 +36,23 @@ export interface ExceptionJsonMessage {
 export default class ExceptionHandler extends HttpExceptionHandler {
   constructor() {
     super(Logger)
+  }
+
+  public async handle(error: any, ctx: HttpContextContract): Promise<any> {
+    const { response } = ctx
+
+    if (!(error instanceof Exception)) {
+      const message: ExceptionJsonMessage = {
+        errors: {
+          message: error.message,
+          error_code: 'E_INTERNAL_SERVER_ERROR',
+        },
+      }
+
+      response.status(HttpStatus.INTERNAL_SERVER_ERROR).send(message)
+      return
+    }
+
+    return super.handle(error, ctx)
   }
 }
