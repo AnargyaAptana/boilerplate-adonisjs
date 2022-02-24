@@ -1,3 +1,5 @@
+import { ValidationException } from '@ioc:Adonis/Core/Validator'
+
 export enum HttpStatus {
   OK = 200,
   CREATED = 201,
@@ -67,4 +69,8 @@ export interface UnprocessableEntityErrorBag {
   rule: string
   field: string
   message: string | string[]
+}
+
+export const isAdonisValidationError = (error: any): boolean => {
+  return error?.code === 'E_VALIDATION_FAILURE' && error instanceof ValidationException
 }
