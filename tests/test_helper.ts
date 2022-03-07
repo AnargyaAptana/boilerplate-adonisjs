@@ -1,3 +1,7 @@
+export type TestScenario<T> = {
+  [key: string]: T
+}
+
 export interface InvalidInputWithErrorBag {
   errorBag: string
   invalidInput: any
