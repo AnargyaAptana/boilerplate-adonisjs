@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@adonisjs/core": "^5.4.2",
-    "@adonisjs/lucid": "^16.3.2",
+    "@adonisjs/lucid": "^17.1.0",
     "@adonisjs/repl": "^3.1.7",
     "luxon": "^2.3.1",
     "mysql": "^2.18.1",
