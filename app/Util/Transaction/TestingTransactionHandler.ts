@@ -1,5 +1,5 @@
 import Database from '@ioc:Adonis/Lucid/Database'
-import { TransactionInterface } from './TransactionContract'
+import TransactionInterface from './TransactionInterface'
 
 export default class TestingTransactionHandler implements TransactionInterface {
   public async beginTransaction(): Promise<void> {

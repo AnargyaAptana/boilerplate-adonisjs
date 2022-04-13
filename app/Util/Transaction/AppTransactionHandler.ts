@@ -1,5 +1,5 @@
 import Database, { TransactionClientContract } from '@ioc:Adonis/Lucid/Database'
-import { TransactionInterface } from './TransactionContract'
+import TransactionInterface from './TransactionInterface'
 
 export default class AppTransactionHandler implements TransactionInterface {
   protected transaction?: TransactionClientContract
