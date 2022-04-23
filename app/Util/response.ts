@@ -79,3 +79,18 @@ export const isAdonisValidationError = (error: any): boolean => {
 export const isRenderableError = (error: any): boolean => {
   return isAdonisValidationError(error) || error instanceof BaseHttpException
 }
+
+export interface PaginatedResponse<PropertyBag> {
+  meta: {
+    total: number
+    per_page: number
+    current_page: number
+    last_page: number
+    first_page: number
+    first_page_url: string
+    last_page_url: string
+    next_page_url: string | null
+    previous_page_url: string | null
+  }
+  data: PropertyBag[]
+}
