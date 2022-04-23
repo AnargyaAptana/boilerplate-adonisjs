@@ -1,4 +1,5 @@
 import { ValidationException } from '@ioc:Adonis/Core/Validator'
+import BaseHttpException from 'App/Exceptions/Http/BaseHttpException'
 
 export enum HttpStatus {
   OK = 200,
@@ -73,4 +74,8 @@ export interface UnprocessableEntityErrorBag {
 
 export const isAdonisValidationError = (error: any): boolean => {
   return error?.code === 'E_VALIDATION_FAILURE' && error instanceof ValidationException
+}
+
+export const isRenderableError = (error: any): boolean => {
+  return isAdonisValidationError(error) || error instanceof BaseHttpException
 }
